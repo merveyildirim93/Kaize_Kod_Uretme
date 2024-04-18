@@ -90,7 +90,7 @@ class Program
 
         string indeksler = indeksString.ToString();
         BigInteger.TryParse(indeksler, out codeNum);
-        BigInteger minNum = BigInteger.Parse("161799556");
+        BigInteger minNum = BigInteger.Parse("161799556"); //karakter setimizde oluşan permütasyonlardan en düşük değerli olanı hesapladık
         BigInteger maxNum = BigInteger.Parse("9223372036854775807"); //int64ün max değeri
         return codeNum >= minNum && codeNum <= maxNum;
     }
