@@ -18,12 +18,12 @@ Problemin Çözümü
 ----
 Problemin çözümü için permütasyon kullanılarak ilerleme sağlanmıştır. 23 karakterden oluşan dizinin içerisinden 8 karakterlik kod oluşturulacağı için 23'ün 8'li permütasyonu üzerinden kodlar oluşturulacak şekilde bir yapı kurulmuştur.
 
-Main Metodu: 
---
+**Main Metodu:**
+
 Programın giriş noktasıdır. Burada, GenerateUniqueCodes metoduna 1000 adet benzersiz kod üretmesi için bir istek yapılır.
 
-GenerateUniqueCodes Metodu:
---
+**GenerateUniqueCodes Metodu:**
+
 1. generatedCodes adında bir liste oluşturulur. Bu liste, üretilen benzersiz kodları saklamak için kullanılır.
 2. Bir Random nesnesi oluşturulur.
 3. indices adında bir liste oluşturulur ve bu liste 1 ile 23 arasındaki rastgele sayılarla doldurulur.
@@ -31,8 +31,8 @@ GenerateUniqueCodes Metodu:
 5. Bu permütasyonlar içinden numCodes sayısı kadar benzersiz kombinasyonlar alınır ve bir liste oluşturulur.
 6. Her bir kombinasyon için bir kod üretilir ve geçerlilik kontrolünden geçirilir. Geçerli ise generatedCodes listesine eklenir.
 
-GenerateCode Metodu:
---
+**GenerateCode Metodu:**
+
 1. Bir Random nesnesi oluşturulur.
 2. charSet adında bir karakter kümesi tanımlanır. Bu karakter kümesi, oluşturulan kodlarda kullanılacak karakterlerin havuzunu temsil eder.
 3. Kodun başlangıç index'i için bir rastgele değer seçilir.
@@ -41,8 +41,8 @@ GenerateCode Metodu:
 6. Oluşturulan karakter kodun sonuna eklenir.
 7. Bir sonraki iterasyon için önceki index güncellenir.
 
-GetPermutations Metodu:
---
+**GetPermutations Metodu:**
+
 1. list parametresiyle gelen bir listenin elemanlarının belirli bir uzunluktaki permütasyonlarını bulmak için kullanılır.
 2. Eğer permütasyon uzunluğu 1 ise, liste her bir elemanın kendi içinde bir listeye alınmasıyla elde edilir.
 3. Permütasyon uzunluğu 1'den büyükse, rekürsif olarak tüm permütasyonları bulmak için kullanılır.
