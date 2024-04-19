@@ -25,14 +25,13 @@ class Program
         // 8'li permütasyonu al ve numCodes sayısına kadar olan olasılıkları elde et
         List<List<int>> permutations = GetPermutations(indices, 8).Distinct().Take(numCodes).ToList();
 
-        // Oluşturulan her kod için geçerlilik kontrolü yapılıyor ve eğer benzersizse listeye ekleniyor.
+        // Oluşturulan her kod için geçerlilik kontrolü yapılıyor ve eğer benzersizse listeye ekleniyor, benzersiz değilse döngü sonlanıyor
         foreach (List<int> permutation in permutations)
         {
             string code;
             do
             {
-                code = GenerateCode(permutation, random);
-                code = GenerateCode(permutation, random);
+                code = GenerateCode(permutation);
                 if (generatedCodes.Contains(code))
                 {
                     Console.WriteLine(code + "  --- KOD GEÇERSİZ (TEKRARLI)");
@@ -49,8 +48,9 @@ class Program
         return generatedCodes;
     }
 
-    static string GenerateCode(List<int> permutation, Random random)
+    static string GenerateCode(List<int> permutation)
     {
+        Random random = new Random();
         string charSet = "ACDEFGHKLMNPRTXYZ234579";
         string code = "";
         int start = random.Next(1, 23); // Kodun başlangıç indexi için random bir değer seçiyoruz
