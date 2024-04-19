@@ -14,33 +14,35 @@ Kodun İşlevi
 ----
 Bu kod, belirli bir sayıda benzersiz kod üretmek için tasarlanmıştır. Her bir kod, belirli bir karakter kümesi içinden belirli bir permutasyon algoritmasıyla oluşturulur. Oluşturulan kodlar daha sonra geçerlilik kontrolünden geçirilir ve benzersiz olduğu doğrulandığında bir listeye eklenir.
 
-Adım Adım Analiz
+Problemin Çözümü
 ----
+Problemin çözümü için permütasyon kullanılarak ilerleme sağlanmıştır. 23 karakterden oluşan dizinin içerisinden 8 karakterlik kod oluşturulacağı için 23'ün 8'li permütasyonu üzerinden kodlar oluşturulacak şekilde bir yapı kurulmuştur.
+
 Main Metodu: 
 --
 Programın giriş noktasıdır. Burada, GenerateUniqueCodes metoduna 1000 adet benzersiz kod üretmesi için bir istek yapılır.
 
 GenerateUniqueCodes Metodu:
 --
-generatedCodes adında bir liste oluşturulur. Bu liste, üretilen benzersiz kodları saklamak için kullanılır.
-Bir Random nesnesi oluşturulur.
-indices adında bir liste oluşturulur ve bu liste 1 ile 23 arasındaki rastgele sayılarla doldurulur.
-GetPermutations metodunu kullanarak, indices listesindeki 8 elemanlı permütasyonları elde eder.
-Bu permütasyonlar içinden numCodes sayısı kadar benzersiz kombinasyonlar alınır ve bir liste oluşturulur.
-Her bir kombinasyon için bir kod üretilir ve geçerlilik kontrolünden geçirilir. Geçerli ise generatedCodes listesine eklenir.
+1. generatedCodes adında bir liste oluşturulur. Bu liste, üretilen benzersiz kodları saklamak için kullanılır.
+2. Bir Random nesnesi oluşturulur.
+3. indices adında bir liste oluşturulur ve bu liste 1 ile 23 arasındaki rastgele sayılarla doldurulur.
+4. GetPermutations metodunu kullanarak, indices listesindeki 8 elemanlı permütasyonları elde eder.
+5. Bu permütasyonlar içinden numCodes sayısı kadar benzersiz kombinasyonlar alınır ve bir liste oluşturulur.
+6. Her bir kombinasyon için bir kod üretilir ve geçerlilik kontrolünden geçirilir. Geçerli ise generatedCodes listesine eklenir.
 
 GenerateCode Metodu:
 --
-Bir Random nesnesi oluşturulur.
-charSet adında bir karakter kümesi tanımlanır. Bu karakter kümesi, oluşturulan kodlarda kullanılacak karakterlerin havuzunu temsil eder.
-Kodun başlangıç index'i için bir rastgele değer seçilir.
-Permutasyon listesindeki her bir eleman için bir döngü oluşturulur:
-Bir sonraki index hesaplanır ve kod oluşturulurken bu index kullanılır.
-Oluşturulan karakter kodun sonuna eklenir.
-Bir sonraki iterasyon için önceki index güncellenir.
+1. Bir Random nesnesi oluşturulur.
+2. charSet adında bir karakter kümesi tanımlanır. Bu karakter kümesi, oluşturulan kodlarda kullanılacak karakterlerin havuzunu temsil eder.
+3. Kodun başlangıç index'i için bir rastgele değer seçilir.
+4. Permutasyon listesindeki her bir eleman için bir döngü oluşturulur:
+5. Bir sonraki index hesaplanır ve kod oluşturulurken bu index kullanılır.
+6. Oluşturulan karakter kodun sonuna eklenir.
+7. Bir sonraki iterasyon için önceki index güncellenir.
 
 GetPermutations Metodu:
 --
-list parametresiyle gelen bir listenin elemanlarının belirli bir uzunluktaki permütasyonlarını bulmak için kullanılır.
-Eğer permütasyon uzunluğu 1 ise, liste her bir elemanın kendi içinde bir listeye alınmasıyla elde edilir.
-Permütasyon uzunluğu 1'den büyükse, rekürsif olarak tüm permütasyonları bulmak için kullanılır.
+1. list parametresiyle gelen bir listenin elemanlarının belirli bir uzunluktaki permütasyonlarını bulmak için kullanılır.
+2. Eğer permütasyon uzunluğu 1 ise, liste her bir elemanın kendi içinde bir listeye alınmasıyla elde edilir.
+3. Permütasyon uzunluğu 1'den büyükse, rekürsif olarak tüm permütasyonları bulmak için kullanılır.
