@@ -8,17 +8,6 @@ class Program
     static void Main()
     {
         List<string> generatedCodes = GenerateUniqueCodes(1000);
-        foreach (var code in generatedCodes) {
-            var control = IsValidCode(code);
-            if (control)
-            {
-                Console.WriteLine(code + "--- KOD GEÇERLİ");
-            }
-            else
-            {
-                Console.WriteLine(code + "--- KOD GEÇERLİ DEĞİL");
-            }
-        }
     }
     static List<string> GenerateUniqueCodes(int numCodes)
     {
@@ -36,13 +25,24 @@ class Program
         // 8'li permütasyonu al ve numCodes sayısına kadar olan olasılıkları elde et
         List<List<int>> permutations = GetPermutations(indices, 8).Distinct().Take(numCodes).ToList();
 
+        // Oluşturulan her kod için geçerlilik kontrolü yapılıyor ve eğer benzersizse listeye ekleniyor.
         foreach (List<int> permutation in permutations)
         {
             string code;
             do
             {
                 code = GenerateCode(permutation, random);
-            } while (generatedCodes.Contains(code));
+                code = GenerateCode(permutation, random);
+                if (generatedCodes.Contains(code))
+                {
+                    Console.WriteLine(code + "  --- KOD GEÇERSİZ (TEKRARLI)");
+                }
+                else
+                {
+                    Console.WriteLine(code + "  --- KOD GEÇERLİ");
+                }
+            } 
+            while (generatedCodes.Contains(code));
             generatedCodes.Add(code);
         }
 
@@ -67,31 +67,11 @@ class Program
         return code;
     }
 
-
     static List<List<T>> GetPermutations<T>(List<T> list, int length)
     {
         if (length == 1) return list.Select(t => new List<T> { t }).ToList();
         return GetPermutations(list, length - 1)
             .SelectMany(t => list.Where(e => !t.Contains(e)),
                         (t1, t2) => t1.Concat(new List<T> { t2 }).ToList()).ToList();
-    }
-
-    static bool IsValidCode(string code)
-    {
-        string charSet = "ACDEFGHKLMNPRTXYZ234579";
-        StringBuilder indeksString = new StringBuilder();
-        BigInteger codeNum = 0;
-
-        foreach (char karakter in code)
-        {
-            int indeks = charSet.IndexOf(karakter);
-            indeksString.Append(indeks);
-        }
-
-        string indeksler = indeksString.ToString();
-        BigInteger.TryParse(indeksler, out codeNum);
-        BigInteger minNum = BigInteger.Parse("161799556"); //karakter setimizde oluşan permütasyonlardan en düşük değerli olanı hesapladık
-        BigInteger maxNum = BigInteger.Parse("9223372036854775807"); //int64ün max değeri
-        return codeNum >= minNum && codeNum <= maxNum;
     }
 }
